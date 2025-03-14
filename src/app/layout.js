@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
     <html lang="en" dir="ltr">
       <head>
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://mohammed-kamal.netlify.app/favicon.ico" />
 
         {/* Meta Tags إضافية */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
