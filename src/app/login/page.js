@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { db } from '@/lib/firebase';
@@ -11,23 +11,19 @@ const Login = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isClient, setIsClient] = useState(false); // ✅ حل مشكلة SSR
   const router = useRouter();
 
-  // ✅ تأكيد أن الكود يعمل فقط على العميل وليس الـ SSR
-  useEffect(() => {
-    setIsClient(true); // بعد التحميل يصبح `true`
-  }, []);
+  // ✅ التأكد أن الكود يعمل على المتصفح فقط
+  const isClient = useMemo(() => typeof window !== 'undefined', []);
 
-  // ✅ منع تنفيذ الكود أثناء الـ SSR
   useEffect(() => {
-    if (isClient) {
-      const user = Cookies.get('user');
-      if (user) {
-        router.push('/dashboard');
-      }
+    if (!isClient) return;
+
+    const user = Cookies.get('user');
+    if (user) {
+      router.replace('/dashboard'); // ✅ استخدام replace بدلاً من push لتحسين الأداء
     }
-  }, [isClient]);
+  }, [isClient, router]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -48,7 +44,7 @@ const Login = () => {
         if (userData.name === name && userData.password === password) {
           Cookies.set('user', JSON.stringify({ name }), { expires: 1 }); // حفظ الجلسة لمدة يوم
           toast.success('Login successful');
-          router.push('/dashboard');
+          router.replace('/dashboard');
         } else {
           toast.error('Invalid credentials');
         }
