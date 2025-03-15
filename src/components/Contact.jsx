@@ -12,7 +12,7 @@ const Contact = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      {/* العنوان */}
+      {/* Title */}
       <motion.h2
         className="text-4xl md:text-5xl font-extrabold text-center mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
         initial={{ opacity: 0, y: -20 }}
@@ -31,14 +31,14 @@ const Contact = () => {
         I'm always open to new collaborations or just a friendly chat. Let's connect and create something amazing together!
       </motion.p>
 
-      {/* بطاقة التواصل */}
+      {/* Content Form */}
       <motion.div
         className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 w-full max-w-xl flex flex-col gap-6 border border-white/20"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        {/* معلومات التواصل */}
+        {/*  Social Media */}
         <div className="flex flex-col items-center text-center gap-4">
           <Mail className="w-12 h-12 text-cyan-400" />
           <h3 className="text-2xl font-semibold text-cyan-300">Email Me</h3>
@@ -51,7 +51,7 @@ const Contact = () => {
           </a>
         </div>
 
-        {/* أو أزرار تواصل اجتماعي (اختياري) */}
+        
         <div className="flex justify-center gap-6 mt-8">
           <SocialButton icon="/icons/github-original.svg" link="https://github.com/toxnroot" />
           <SocialButton icon="/icons/linkedin-original.svg" link="https://www.linkedin.com/in/mohammed-kamal-901041322/" />
@@ -64,7 +64,7 @@ const Contact = () => {
 
 export default Contact
 
-// ✅ زر تواصل اجتماعي
+
 const SocialButton = ({ icon, link }) => (
   <a
     href={link}

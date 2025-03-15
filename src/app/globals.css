@@ -91,7 +91,7 @@ html, body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1.5);
-  margin: 0; /* عادة ما يحتاج */
+  margin: 0;
 }
 
 
@@ -181,7 +181,7 @@ html, body {
   animation-delay: 0.6s;
 }
 
-/* حركة الكلمة الأساسية */
+
 @keyframes pulse {
   0% {
     opacity: 0.6;
@@ -194,7 +194,7 @@ html, body {
   }
 }
 
-/* حركة النقاط */
+
 @keyframes blink {
   0% {
     opacity: 0.2;

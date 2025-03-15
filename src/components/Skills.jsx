@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-// ✅ Skills data
+//  Skills data
 const skills = [
   { name: 'HTML5', icon: '/icons/html5-original.svg' },
   { name: 'CSS3', icon: '/icons/css3-original.svg' },
@@ -61,7 +61,7 @@ const Skills = () => {
 
 export default Skills
 
-// ✅ Skill Card Component
+//  Skill Card Component
 const SkillCard = ({ skill }) => {
   return (
     <motion.div

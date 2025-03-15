@@ -33,8 +33,8 @@ const Navbar = () => {
             onClick={toggleMenu}
             className="text-white focus:outline-none"
             aria-label="Toggle Menu"
-            aria-expanded={isOpen} // تحسين إمكانية الوصول
-            role="button" // تحسين إمكانية الوصول
+            aria-expanded={isOpen} 
+            role="button" 
           >
             {isOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
@@ -71,7 +71,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-// ✅ Desktop NavLink بدون `<a>` داخل `<a>`
+
 const NavLink = ({ href, children }) => (
   <Link href={href} passHref>
     <motion.span
@@ -83,7 +83,6 @@ const NavLink = ({ href, children }) => (
   </Link>
 );
 
-// ✅ Mobile NavLink بدون `<a>` داخل `<a>`
 const MobileNavLink = ({ href, onClick, children }) => (
   <Link href={href} passHref>
     <motion.span
@@ -96,7 +95,6 @@ const MobileNavLink = ({ href, onClick, children }) => (
   </Link>
 );
 
-// ✅ أيقونات ثابتة لتجنب مشاكل Hydration
 const MenuIcon = () => (
   <svg
     width="28"

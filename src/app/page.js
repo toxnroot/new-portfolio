@@ -4,7 +4,6 @@ import Loader from '@/components/Loader';
 import { useEffect } from 'react';
 import { trackVisitors } from '@/utils/trackVisitors';
 
-// استدعاء ديناميكي للمكونات بدون SSR + عنصر تحميل مؤقت (اختياري)
 const Hero = dynamic(() => import('@/components/Hero'), {
   ssr: false,
   loading: () => <Loader />,

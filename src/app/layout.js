@@ -3,16 +3,15 @@ import "./globals.css";
 import { Toaster } from 'react-hot-toast';
 
 
-// ✅ المتغيرات المشتركة
 const authorName = "Mohammed Kamal";
 const siteName = "Mohammed Portfolio";
 const siteDescription = "Welcome to my portfolio! I’m a passionate frontend developer specializing in React, Three.js, and Framer Motion.";
-const siteUrl = "https://mohammed-kamal.netlify.app"; // حط رابطك هنا
-const siteImage = `${siteUrl}/myimage.webp`; // رابط الصورة
-const primaryColor = "#00ffff"; // الأزرق المستخدم
-const secondaryColor = "#ff00ff"; // الزهري المستخدم
+const siteUrl = "https://mohammed-kamal.netlify.app"; 
+const siteImage = `${siteUrl}/myimage.webp`; 
+const primaryColor = "#00ffff"; 
+const secondaryColor = "#ff00ff"; 
 
-// ✅ Metadata
+// Next Metadata
 export const metadata = {
   title: `${authorName} Portfolio | Frontend Developer`,
   description: siteDescription,
@@ -65,7 +64,7 @@ export default function RootLayout({ children }) {
         {/* Favicon */}
         <link rel="icon" href="https://mohammed-kamal.netlify.app/favicon.ico" />
 
-        {/* Meta Tags إضافية */}
+        {/* Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content={primaryColor} />
         <meta name="author" content={authorName} />

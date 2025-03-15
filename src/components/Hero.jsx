@@ -13,17 +13,11 @@ export default function Hero() {
         camera={{ position: [0, 0, 6], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
       >
-        {/* ✅ نجوم تتحرك مع الماوس */}
         <AnimatedStars />
-
-        {/* ✅ إضاءة */}
         <ambientLight intensity={0.5} />
         <pointLight color={'#00ffff'} intensity={1} position={[10, 10, 10]} />
-
-        {/* ✅ المجسم */}
         <PlasmaSphere />
-
-        {/* ✅ Bloom */}
+        {/*  Bloom */}
         <EffectComposer>
           <Bloom
             luminanceThreshold={0.2}
@@ -33,7 +27,7 @@ export default function Hero() {
         </EffectComposer>
       </Canvas>
 
-      {/* ✅ النص */}
+      {/* Description */}
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center z-10 text-white text-center px-4">
         <h1 className="text-4xl md:text-7xl font-bold mb-4">
           Hi, I'm <span className="text-cyan-400 fira-code">Mohammed</span>
@@ -63,7 +57,7 @@ function PlasmaSphere() {
       meshRef.current.material.uniforms.uTime.value = elapsedTime
     }
 
-    // ✅ حركة الكاميرا (خفيفة لتأثير الـ parallax)
+    // Move the camera
     camera.position.x += (mouse.x * 2 - camera.position.x) * 0.05
     camera.position.y += (-mouse.y * 2 - camera.position.y) * 0.05
     camera.lookAt(0, 0, 0)
@@ -96,8 +90,8 @@ function AnimatedStars() {
 
   useFrame(() => {
     if (starsRef.current) {
-      // ✅ دوران النجوم بشكل سلس وخفيف
-      starsRef.current.rotation.y += 0.0005 // دوران تلقائي خفيف
+      // Rotate the stars
+      starsRef.current.rotation.y += 0.0005 
 
     }
   })

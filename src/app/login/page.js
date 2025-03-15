@@ -13,7 +13,6 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // ✅ التأكد أن الكود يعمل على المتصفح فقط
   const isClient = useMemo(() => typeof window !== 'undefined', []);
 
   useEffect(() => {
@@ -21,7 +20,7 @@ const Login = () => {
 
     const user = Cookies.get('user');
     if (user) {
-      router.replace('/dashboard'); // ✅ استخدام replace بدلاً من push لتحسين الأداء
+      router.replace('/dashboard');
     }
   }, [isClient, router]);
 
@@ -35,14 +34,14 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const userRef = doc(db, 'users', 'admin'); // احضار بيانات الأدمن
+      const userRef = doc(db, 'users', 'admin'); 
       const userSnap = await getDoc(userRef);
 
       if (userSnap.exists()) {
         const userData = userSnap.data();
 
         if (userData.name === name && userData.password === password) {
-          Cookies.set('user', JSON.stringify({ name }), { expires: 1 }); // حفظ الجلسة لمدة يوم
+          Cookies.set('user', JSON.stringify({ name }), { expires: 1 }); 
           toast.success('Login successful');
           router.replace('/dashboard');
         } else {
