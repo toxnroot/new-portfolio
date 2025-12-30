@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Press+Start+2P&display=swap');
 @import "tailwindcss";
+
 :root {
   --foreground: #000;
   --primary-color: #00ffff;
@@ -30,7 +32,7 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   background: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
@@ -40,19 +42,22 @@ body {
   font-style: normal;
 }
 
-.fira-code{
+.fira-code {
   font-family: "Fira Code", monospace;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
+
 .press-start-2p-regular {
   font-family: "Press Start 2P", system-ui;
   font-weight: 500;
   font-style: normal;
 
 }
-html, body {
+
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -82,6 +87,7 @@ html, body {
     0 0 40px #00ffff,
     0 0 60px #00ffff;
 }
+
 .loader {
   display: flex;
   justify-content: center;
@@ -186,9 +192,11 @@ html, body {
   0% {
     opacity: 0.6;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.6;
   }
@@ -199,10 +207,18 @@ html, body {
   0% {
     opacity: 0.2;
   }
+
   20% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.2;
   }
+}
+
+.font-arabic,
+[dir="rtl"],
+[dir="rtl"] * {
+  font-family: 'Cairo', sans-serif !important;
 }

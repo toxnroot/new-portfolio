@@ -13,6 +13,15 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+// Debugging check (will only log in dev)
+if (process.env.NODE_ENV === 'development') {
+  if (!firebaseConfig.apiKey) {
+    console.error("Firebase Error: NEXT_PUBLIC_FIREBASE_API_KEY is undefined. Check your .env.local file.");
+  } else {
+    console.log("Firebase: API Key loaded (first 5 chars):", firebaseConfig.apiKey.substring(0, 5));
+  }
+}
+
 const app = initializeApp(firebaseConfig);
 
 // Firebase services
@@ -20,4 +29,4 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
 
-export { app, db, storage , auth };
+export { app, db, storage, auth };

@@ -2,6 +2,8 @@
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { toast } from 'react-hot-toast';
+import { LogOut } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const LogoutButton = () => {
   const router = useRouter();
@@ -13,9 +15,15 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogout} className="p-2 bg-red-500 text-white rounded absolute top-16 right-15">
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={handleLogout}
+      className="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 rounded-xl transition-all duration-300 backdrop-blur-md absolute top-8 right-8 z-50 font-medium"
+    >
+      <LogOut size={18} />
       Logout
-    </button>
+    </motion.button>
   );
 };
 

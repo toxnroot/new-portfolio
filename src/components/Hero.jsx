@@ -5,20 +5,24 @@ import { Stars } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { useRef } from 'react'
 import * as THREE from 'three'
+import { useLanguage } from '@/context/LanguageContext'
+import { Download } from 'lucide-react'
 
 export default function Hero() {
+  const { t, lang } = useLanguage()
+
   return (
     <section id="home" className="relative h-screen w-full bg-black overflow-hidden">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 50 }}
-        gl={{ antialias: true, alpha: true }}
       >
         <AnimatedStars />
         <ambientLight intensity={0.5} />
         <pointLight color={'#00ffff'} intensity={1} position={[10, 10, 10]} />
+        <PointLightAnimation />
         <PlasmaSphere />
         {/*  Bloom */}
-        <EffectComposer>
+        <EffectComposer multisampling={0}>
           <Bloom
             luminanceThreshold={0.2}
             luminanceSmoothing={0.75}
@@ -28,22 +32,43 @@ export default function Hero() {
       </Canvas>
 
       {/* Description */}
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center z-10 text-white text-center px-4">
+      <div className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center z-10 text-white text-center px-4 ${lang === 'ar' ? 'font-arabic' : ''}`}>
         <h1 className="text-4xl md:text-7xl font-bold mb-4">
-          Hi, I'm <span className="text-cyan-400 fira-code">Mohammed</span>
+          {t.hero.hi} <span className="text-cyan-400 fira-code">{t.hero.name}</span>
         </h1>
         <p className="text-md md:text-2xl mb-8 text-gray-300">
-          I create immersive web experiences.
+          {t.hero.subtitle}
         </p>
-        <a
-          href="#contact"
-          className="px-8 py-4 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition-all"
-        >
-          Let's Talk
-        </a>
+
+        <div className="flex flex-col sm:flex-row gap-4 items-center">
+          <a
+            href="#contact"
+            className="px-8 py-4 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+          >
+            {t.hero.button}
+          </a>
+
+          <a
+            href="/cv.pdf"
+            download
+            className="px-8 py-4 bg-white/5 backdrop-blur-md border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all flex items-center gap-2"
+          >
+            <Download size={20} className="text-cyan-400" />
+            {t.hero.downloadCV}
+          </a>
+        </div>
       </div>
     </section>
   )
+}
+
+function PointLightAnimation() {
+  const lightRef = useRef()
+  useFrame(({ clock }) => {
+    lightRef.current.position.x = Math.sin(clock.getElapsedTime()) * 10
+    lightRef.current.position.z = Math.cos(clock.getElapsedTime()) * 10
+  })
+  return <pointLight ref={lightRef} color="#ff00ff" intensity={1} />
 }
 
 function PlasmaSphere() {
@@ -55,6 +80,9 @@ function PlasmaSphere() {
 
     if (meshRef.current) {
       meshRef.current.material.uniforms.uTime.value = elapsedTime
+      // Rotate the sphere
+      meshRef.current.rotation.y = elapsedTime * 0.2
+      meshRef.current.rotation.z = elapsedTime * 0.1
     }
 
     // Move the camera
@@ -65,9 +93,8 @@ function PlasmaSphere() {
 
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[2, 128, 128]} />
+      <sphereGeometry args={[2, 64, 64]} />
       <shaderMaterial
-        key={THREE.MathUtils.generateUUID()}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={{
@@ -86,12 +113,12 @@ function PlasmaSphere() {
 
 function AnimatedStars() {
   const starsRef = useRef()
-  
+
 
   useFrame(() => {
     if (starsRef.current) {
       // Rotate the stars
-      starsRef.current.rotation.y += 0.0005 
+      starsRef.current.rotation.y += 0.0005
 
     }
   })
@@ -122,15 +149,14 @@ const vertexShader = `
 
     vec3 pos = position;
 
-    float waveFreq = 4.0;
-    float waveAmp = 0.05;
-    float waveSpeed = 2.0;
+    float waveFreq = 3.5;
+    float waveAmp = 0.1;
+    float waveSpeed = 2.5;
 
     float displacement = sin(waveFreq * pos.y + uTime * waveSpeed) * waveAmp;
-
     pos += normal * displacement;
-    pos.x += sin(pos.y * 5.0 + uTime * 0.5) * 0.02;
-    pos.y += cos(pos.x * 5.0 + uTime * 0.5) * 0.02;
+    pos.x += sin(pos.y * 3.0 + uTime * 0.8) * 0.05;
+    pos.y += cos(pos.x * 3.0 + uTime * 0.8) * 0.05;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }

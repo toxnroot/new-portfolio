@@ -1,15 +1,16 @@
 import Navbar from '@/components/Navbar';
 import "./globals.css";
-import { Toaster } from 'react-hot-toast';
+import ToasterProvider from '@/components/ToasterProvider';
+import { LanguageProvider } from '@/context/LanguageContext';
 
 
 const authorName = "Mohammed Kamal";
 const siteName = "Mohammed Portfolio";
 const siteDescription = "Welcome to my portfolio! I’m a passionate frontend developer specializing in React, Three.js, and Framer Motion.";
-const siteUrl = "https://mohammed-kamal.netlify.app"; 
-const siteImage = `${siteUrl}/myimage.webp`; 
-const primaryColor = "#00ffff"; 
-const secondaryColor = "#ff00ff"; 
+const siteUrl = "https://mohammed-kamal.netlify.app";
+const siteImage = `${siteUrl}/myimage.webp`;
+const primaryColor = "#00ffff";
+const secondaryColor = "#ff00ff";
 
 // Next Metadata
 export const metadata = {
@@ -59,7 +60,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en">
       <head>
         {/* Favicon */}
         <link rel="icon" href="https://mohammed-kamal.netlify.app/favicon.ico" />
@@ -84,9 +85,11 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={`antialiased bg-black text-white`}>
-      <Toaster position="top-center" reverseOrder={false} />
-        <Navbar />
-        {children}
+        <LanguageProvider>
+          <ToasterProvider />
+          <Navbar />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

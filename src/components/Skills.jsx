@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/context/LanguageContext'
 
 //  Skills data
 const skills = [
@@ -23,17 +24,20 @@ const skills = [
 ]
 
 const Skills = () => {
+  const { t } = useLanguage()
+
   return (
-    <section id="skills" className="relative py-20 bg-gradient-to-br from-black via-[#0f0f0f] to-black text-white">
+    <section id="skills" className="relative py-32 bg-gradient-to-br from-black via-[#0f0f0f] to-black text-white">
       <div className="container mx-auto px-6 md:px-20">
         {/* Section Title */}
         <motion.h2
-          className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
+          className="text-4xl md:text-5xl font-extrabold text-center mb-20 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent py-6"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+
         >
-          My Skills
+          {t.skills.title}
         </motion.h2>
 
         {/* Skills Grid */}
@@ -41,7 +45,7 @@ const Skills = () => {
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={{
             visible: {
               transition: {
@@ -65,7 +69,7 @@ export default Skills
 const SkillCard = ({ skill }) => {
   return (
     <motion.div
-      className="relative group rounded-2xl overflow-hidden p-6 cursor-pointer transition-all duration-300 ease-in-out bg-white/5 backdrop-blur-md shadow-lg shadow-black/50 hover:shadow-cyan-500/40 hover:scale-[1.07] border border-white/10 hover:border-cyan-400/50"
+      className="relative group rounded-2xl overflow-hidden p-6 cursor-pointer transition-all duration-300 ease-in-out bg-white/5 shadow-lg shadow-black/50 hover:shadow-cyan-500/40 hover:scale-[1.05] border border-white/10 hover:border-cyan-400/50"
       variants={{
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0 },

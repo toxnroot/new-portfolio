@@ -29,17 +29,22 @@ const Contact = dynamic(() => import('@/components/Contact'), {
   loading: () => <></>,
 });
 
+const Testimonials = dynamic(() => import('@/components/Testimonials'), {
+  ssr: false,
+  loading: () => <></>,
+});
+
 export default function Home() {
   useEffect(() => {
-   trackVisitors();
+    trackVisitors();
   }, []);
-  
+
   return (
-    <main className="h-screen overflow-scroll">
+    <main className="relative">
       <Hero />
-      
-      <Skills />
       <Projects />
+      <Testimonials />
+      <Skills />
       <About />
       <Contact />
     </main>
