@@ -38,8 +38,8 @@ const DashboardForm = ({ initialData = null, onSuccess = null }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !description || !demo || !code || !imageUrl) {
-      toast.error('Please fill in all fields.');
+    if (!title || !description || !demo || !imageUrl) {
+      toast.error('Please fill in all required fields (Title, Description, Demo, and Image).');
       return;
     }
 
@@ -49,7 +49,7 @@ const DashboardForm = ({ initialData = null, onSuccess = null }) => {
         title,
         description,
         demo,
-        code,
+        code: code || '#',
         image: imageUrl,
         updatedAt: serverTimestamp(),
       };
@@ -144,7 +144,7 @@ const DashboardForm = ({ initialData = null, onSuccess = null }) => {
               </motion.div>
 
               <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
-                <label className={labelClasses}><CodeIcon size={16} /> Code Link</label>
+                <label className={labelClasses}><CodeIcon size={16} /> Code Link <span className="text-[10px] text-gray-500 ml-1 uppercase">(Optional)</span></label>
                 <div className="relative">
                   <CodeIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                   <input
@@ -179,10 +179,10 @@ const DashboardForm = ({ initialData = null, onSuccess = null }) => {
             type="submit"
             disabled={loading}
             className={`w-full py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-2 transition-all shadow-lg ${loading
-                ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                : initialData
-                  ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-green-500/20'
-                  : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-cyan-500/25'
+              ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
+              : initialData
+                ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-green-500/20'
+                : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-cyan-500/25'
               }`}
           >
             {loading ? (

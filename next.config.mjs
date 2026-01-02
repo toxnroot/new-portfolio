@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'mostaql.hsoubcdn.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'ms.hsoubcdn.com',
+      },
     ],
   },
 }
