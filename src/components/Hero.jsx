@@ -6,7 +6,7 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { useRef } from 'react'
 import * as THREE from 'three'
 import { useLanguage } from '@/context/LanguageContext'
-import { Download } from 'lucide-react'
+
 
 export default function Hero() {
   const { t, lang } = useLanguage()
@@ -48,14 +48,7 @@ export default function Hero() {
             {t.hero.button}
           </a>
 
-          <a
-            href="/cv.pdf"
-            download
-            className="px-8 py-4 bg-white/5 backdrop-blur-md border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all flex items-center gap-2"
-          >
-            <Download size={20} className="text-cyan-400" />
-            {t.hero.downloadCV}
-          </a>
+
         </div>
       </div>
     </section>

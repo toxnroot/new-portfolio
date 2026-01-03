@@ -11,7 +11,7 @@ import { useLanguage } from '@/context/LanguageContext';
 const Projects = () => {
   const { t, lang } = useLanguage();
   const [projects, setProjects] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(6);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="relative min-h-screen py-40 px-6 overflow-hidden bg-gradient-to-br from-black via-[#0f0f0f] to-black">
+    <section id="projects" className="relative min-h-screen py-40 px-6 bg-gradient-to-br from-black via-[#0f0f0f] to-black">
       {/* Background Aesthetic Orbs */}
       <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none animate-pulse" />
       <div className="absolute bottom-1/4 -left-20 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[150px] pointer-events-none animate-pulse" />
@@ -105,8 +105,7 @@ const Projects = () => {
             <motion.div
               variants={containerVariants}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate="visible"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
             >
               <AnimatePresence mode="popLayout">
