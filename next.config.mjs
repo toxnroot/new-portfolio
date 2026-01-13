@@ -10,6 +10,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'ms.hsoubcdn.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'suar.hsoubcdn.me',
+      },
+
     ],
   },
 }
