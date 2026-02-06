@@ -58,10 +58,10 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="relative min-h-screen py-40 px-6 bg-gradient-to-br from-black via-[#0f0f0f] to-black">
+    <section id="projects" className="relative min-h-screen py-40 px-6 bg-gradient-to-br from-black via-[#0f0f0f] to-black overflow-hidden">
       {/* Background Aesthetic Orbs */}
-      <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 -left-20 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[150px] pointer-events-none animate-pulse" />
+      <div className="absolute top-1/4 -right-20 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-cyan-500/5 rounded-full blur-[100px] md:blur-[150px] pointer-events-none animate-pulse" />
+      <div className="absolute bottom-1/4 -left-20 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-purple-500/5 rounded-full blur-[100px] md:blur-[150px] pointer-events-none animate-pulse" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <header className="text-center mb-28">

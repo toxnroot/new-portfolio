@@ -2,6 +2,27 @@ import Navbar from '@/components/Navbar';
 import "./globals.css";
 import ToasterProvider from '@/components/ToasterProvider';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { Cairo, Fira_Code, Press_Start_2P } from 'next/font/google';
+
+const cairo = Cairo({
+  subsets: ['arabic', 'latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900', '1000'],
+  variable: '--font-cairo',
+  display: 'swap',
+});
+
+const firaCode = Fira_Code({
+  subsets: ['latin'],
+  variable: '--font-fira-code',
+  display: 'swap',
+});
+
+const pressStart2P = Press_Start_2P({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-press-start',
+  display: 'swap',
+});
 
 
 const authorName = "Mohammed Kamal";
@@ -22,6 +43,9 @@ export const metadata = {
     "Web Development",
     "Framer Motion",
     "Web Developer Portfolio",
+    "مطور واجهات أمامية",
+    "مبرمج ريأكت",
+    "تطوير مواقع",
     `${authorName} Portfolio`,
   ],
   authors: [{ name: authorName }],
@@ -59,31 +83,45 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": authorName,
+    "url": siteUrl,
+    "image": siteImage,
+    "jobTitle": "Frontend Developer",
+    "sameAs": [
+      // Add your social links here if they are in your contact data
+      "https://github.com/mohammed-kamal",
+      "https://linkedin.com/in/mohammed-kamal"
+    ],
+    "description": siteDescription
+  };
+
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": siteName,
+    "url": siteUrl,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${siteUrl}/?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
-    <html lang="en">
+    <html lang="en" className={`${cairo.variable} ${firaCode.variable} ${pressStart2P.variable}`}>
       <head>
-        {/* Favicon */}
-        <link rel="icon" href="https://mohammed-kamal.netlify.app/favicon.ico" />
-
-        {/* Meta Tags */}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content={primaryColor} />
-        <meta name="author" content={authorName} />
-
-        {/* OpenGraph */}
-        <meta property="og:title" content={`${authorName}'Portfolio | Frontend Developer`} />
-        <meta property="og:description" content="Check out my latest projects and skills in frontend development!" />
-        <meta property="og:image" content={siteImage} />
-        <meta property="og:url" content={siteUrl} />
-        <meta property="og:type" content="website" />
-
-        {/* Twitter Cards */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${authorName}'Portfolio | Frontend Developer`} />
-        <meta name="twitter:description" content="Check out my latest projects and skills in frontend development!" />
-        <meta name="twitter:image" content={siteImage} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+        />
       </head>
-
       <body className={`antialiased bg-black text-white`}>
         <LanguageProvider>
           <ToasterProvider />

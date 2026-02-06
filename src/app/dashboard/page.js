@@ -18,27 +18,30 @@ const DashboardPage = () => {
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-5xl font-black mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-            Admin Dashboard
-          </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Manage your professional portfolio and showcase your latest work to the world.
-          </p>
-        </motion.div>
-
-        <LogoutButton />
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-4 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex-1 text-center md:text-left"
+          >
+            <h1 className="text-3xl md:text-5xl font-black mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent px-2 md:px-0">
+              Admin Dashboard
+            </h1>
+            <p className="text-gray-400 text-base md:text-lg max-w-2xl px-4 md:px-0">
+              Manage your professional portfolio and showcase your latest work to the world.
+            </p>
+          </motion.div>
+          <div className="flex-shrink-0">
+            <LogoutButton />
+          </div>
+        </div>
 
         {/* Tab Switcher */}
-        <div className="flex justify-center mb-10">
-          <div className="bg-white/5 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 flex gap-2">
+        <div className="flex justify-center mb-10 px-2">
+          <div className="bg-white/5 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 flex flex-wrap justify-center gap-2">
             <button
               onClick={() => setActiveTab('add')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl transition-all font-semibold ${activeTab === 'add'
+              className={`flex items-center gap-2 px-4 md:px-6 py-2.5 rounded-xl transition-all font-semibold text-sm md:text-base ${activeTab === 'add'
                 ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/20'
                 : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
@@ -48,7 +51,7 @@ const DashboardPage = () => {
             </button>
             <button
               onClick={() => setActiveTab('manage')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl transition-all font-semibold ${activeTab === 'manage'
+              className={`flex items-center gap-2 px-4 md:px-6 py-2.5 rounded-xl transition-all font-semibold text-sm md:text-base ${activeTab === 'manage'
                 ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/20'
                 : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
@@ -58,7 +61,7 @@ const DashboardPage = () => {
             </button>
             <button
               onClick={() => setActiveTab('testimonials')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl transition-all font-semibold ${activeTab === 'testimonials'
+              className={`flex items-center gap-2 px-4 md:px-6 py-2.5 rounded-xl transition-all font-semibold text-sm md:text-base ${activeTab === 'testimonials'
                 ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/20'
                 : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}

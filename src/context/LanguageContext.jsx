@@ -32,6 +32,13 @@ export const translations = {
                 badge: "Featured Project",
                 live: "Live View",
                 code: "Code",
+                viewDetails: "View Details",
+            },
+            details: {
+                back: "Back to Projects",
+                techUsed: "Technologies Used",
+                demo: "Live Demo",
+                code: "Source Code",
             }
         },
         about: {
@@ -100,6 +107,13 @@ export const translations = {
                 badge: "مشروع مميز",
                 live: "معاينة حية",
                 code: "الكود",
+                viewDetails: "عرض التفاصيل",
+            },
+            details: {
+                back: "العودة للمشاريع",
+                techUsed: "التقنيات المستخدمة",
+                demo: "معاينة حية",
+                code: "كود المشروع",
             }
         },
         about: {

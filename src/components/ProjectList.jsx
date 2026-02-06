@@ -69,7 +69,7 @@ const ProjectList = () => {
                     placeholder="Search projects..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500/50 outline-none transition-all"
+                    className="w-full pl-12 pr-4 py-2.5 md:py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500/50 outline-none transition-all text-sm md:text-base"
                 />
             </div>
 
@@ -94,11 +94,11 @@ const ProjectList = () => {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
-                                className="group relative bg-white/5 backdrop-blur-md p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 shadow-xl"
+                                className="group relative bg-white/5 backdrop-blur-md p-4 md:p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 shadow-xl"
                             >
-                                <div className="flex gap-4">
+                                <div className="flex flex-col sm:flex-row gap-4">
                                     {/* Thumbnail */}
-                                    <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-800 flex-shrink-0 border border-white/10">
+                                    <div className="w-full sm:w-24 h-48 sm:h-24 rounded-xl overflow-hidden bg-gray-800 flex-shrink-0 border border-white/10">
                                         <img
                                             src={project.image}
                                             alt={project.title}
@@ -111,22 +111,22 @@ const ProjectList = () => {
                                         <h3 className="text-lg font-bold text-white truncate mb-1">{project.title}</h3>
                                         <p className="text-gray-400 text-sm line-clamp-2 mb-3">{project.description}</p>
 
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-2 flex-wrap">
                                             <button
                                                 onClick={() => setEditingProject(project)}
-                                                className="p-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 rounded-lg transition-colors"
+                                                className="p-2 md:p-2.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 rounded-lg transition-colors"
                                                 title="Edit"
                                             >
                                                 <Edit3 size={16} />
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(project.id)}
-                                                className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition-colors"
+                                                className="p-2 md:p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition-colors"
                                                 title="Delete"
                                             >
                                                 <Trash2 size={16} />
                                             </button>
-                                            <div className="h-4 w-px bg-white/10 mx-1" />
+                                            <div className="hidden sm:block h-4 w-px bg-white/10 mx-1" />
                                             <a href={project.demo} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-500 hover:text-cyan-400 transition-colors">
                                                 <ExternalLink size={16} />
                                             </a>

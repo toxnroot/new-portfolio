@@ -3,32 +3,43 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Stars } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import { useLanguage } from '@/context/LanguageContext'
 
 
 export default function Hero() {
   const { t, lang } = useLanguage()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <section id="home" className="relative h-screen w-full bg-black overflow-hidden">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 50 }}
+        gl={{ antialias: !isMobile }}
       >
-        <AnimatedStars />
+        <AnimatedStars isMobile={isMobile} />
         <ambientLight intensity={0.5} />
         <pointLight color={'#00ffff'} intensity={1} position={[10, 10, 10]} />
         <PointLightAnimation />
-        <PlasmaSphere />
-        {/*  Bloom */}
-        <EffectComposer multisampling={0}>
-          <Bloom
-            luminanceThreshold={0.2}
-            luminanceSmoothing={0.75}
-            intensity={1.2}
-          />
-        </EffectComposer>
+        <PlasmaSphere isMobile={isMobile} />
+
+        {!isMobile && (
+          <EffectComposer multisampling={0}>
+            <Bloom
+              luminanceThreshold={0.2}
+              luminanceSmoothing={0.75}
+              intensity={1.2}
+            />
+          </EffectComposer>
+        )}
       </Canvas>
 
       {/* Description */}
@@ -64,7 +75,7 @@ function PointLightAnimation() {
   return <pointLight ref={lightRef} color="#ff00ff" intensity={1} />
 }
 
-function PlasmaSphere() {
+function PlasmaSphere({ isMobile }) {
   const meshRef = useRef()
   const { camera, mouse } = useThree()
 
@@ -78,15 +89,17 @@ function PlasmaSphere() {
       meshRef.current.rotation.z = elapsedTime * 0.1
     }
 
-    // Move the camera
-    camera.position.x += (mouse.x * 2 - camera.position.x) * 0.05
-    camera.position.y += (-mouse.y * 2 - camera.position.y) * 0.05
-    camera.lookAt(0, 0, 0)
+    // Move the camera - disable on mobile for better performance
+    if (!isMobile) {
+      camera.position.x += (mouse.x * 2 - camera.position.x) * 0.05
+      camera.position.y += (-mouse.y * 2 - camera.position.y) * 0.05
+      camera.lookAt(0, 0, 0)
+    }
   })
 
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[2, 64, 64]} />
+      <sphereGeometry args={[2, isMobile ? 32 : 64, isMobile ? 32 : 64]} />
       <shaderMaterial
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
@@ -104,15 +117,13 @@ function PlasmaSphere() {
   )
 }
 
-function AnimatedStars() {
+function AnimatedStars({ isMobile }) {
   const starsRef = useRef()
-
 
   useFrame(() => {
     if (starsRef.current) {
       // Rotate the stars
       starsRef.current.rotation.y += 0.0005
-
     }
   })
 
@@ -121,7 +132,7 @@ function AnimatedStars() {
       <Stars
         radius={100}   // حجم مجال النجوم
         depth={100}     // عمق المجال
-        count={3000}   // عدد النجوم
+        count={isMobile ? 1000 : 3000}   // عدد النجوم - reduced on mobile
         factor={5}     // حجم النجوم
         saturation={5}
         fade={true}

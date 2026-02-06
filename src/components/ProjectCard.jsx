@@ -1,6 +1,7 @@
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
 const ProjectCard = ({ project }) => {
@@ -40,6 +41,12 @@ const ProjectCard = ({ project }) => {
         <p className="text-gray-400 text-sm leading-relaxed mb-8 line-clamp-3">
           {project.description}
         </p>
+
+        {/* View Details Link */}
+        <Link href={`/projects/${project.id}`} className={`inline-flex items-center gap-2 mb-6 text-cyan-400 text-sm font-black uppercase tracking-widest hover:text-white transition-colors group/link`}>
+          {t.projects.card.viewDetails}
+          <ArrowRight size={16} className={`group-hover/link:translate-x-1 transition-transform ${lang === 'ar' ? 'rotate-180 group-hover/link:-translate-x-1' : ''}`} />
+        </Link>
 
         {/* Action Buttons */}
         <div className={`flex items-center gap-4 ${lang === 'ar' ? 'flex-row-reverse' : ''}`}>

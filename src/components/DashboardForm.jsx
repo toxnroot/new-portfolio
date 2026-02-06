@@ -88,7 +88,7 @@ const DashboardForm = ({ initialData = null, onSuccess = null }) => {
 
   return (
     <div className="relative w-full">
-      <div className="relative bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+      <div className="relative bg-white/5 backdrop-blur-xl p-5 md:p-8 rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <Sparkles className="w-8 h-8 text-cyan-400" />

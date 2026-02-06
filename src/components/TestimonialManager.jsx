@@ -54,14 +54,16 @@ const TestimonialManager = () => {
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8 px-2">
+                <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
                     <MessageSquare className="text-cyan-400" />
                     Testimonials Moderation
                 </h2>
-                <span className="px-4 py-1 bg-white/5 rounded-full text-sm text-gray-400 border border-white/10">
-                    Total: {testimonials.length}
-                </span>
+                <div className="flex justify-start">
+                    <span className="px-4 py-1 bg-white/5 rounded-full text-xs md:text-sm text-gray-400 border border-white/10">
+                        Total: {testimonials.length}
+                    </span>
+                </div>
             </div>
 
             {loading ? (
@@ -83,18 +85,18 @@ const TestimonialManager = () => {
                                     : 'bg-white/5 border-white/10'
                                     }`}
                             >
-                                <div className="flex flex-col md:flex-row justify-between gap-6">
+                                <div className="flex flex-col sm:flex-row justify-between gap-6">
                                     <div className="flex-1">
-                                        <div className="flex items-center gap-3 mb-2">
-                                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                        <div className="flex items-center gap-3 mb-2 flex-wrap">
+                                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
                                                 <User size={20} className="text-gray-400" />
                                             </div>
-                                            <div>
-                                                <h4 className="font-bold text-white">{item.name}</h4>
+                                            <div className="min-w-0">
+                                                <h4 className="font-bold text-white truncate">{item.name}</h4>
                                                 <p className="text-xs text-gray-500">{item.position || 'Client'}</p>
                                             </div>
                                             {!item.approved && (
-                                                <span className="px-2 py-0.5 bg-cyan-400 text-black text-[10px] font-bold rounded-full uppercase tracking-wider ml-2">
+                                                <span className="px-2 py-0.5 bg-cyan-400 text-black text-[10px] font-bold rounded-full uppercase tracking-wider">
                                                     Pending
                                                 </span>
                                             )}
@@ -114,7 +116,7 @@ const TestimonialManager = () => {
                                         <p className="text-gray-300 text-sm italic">"{item.content}"</p>
                                     </div>
 
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center gap-2 flex-wrap">
                                         {!item.approved && (
                                             <button
                                                 onClick={() => handleApprove(item.id)}

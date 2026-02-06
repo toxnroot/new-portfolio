@@ -9,7 +9,7 @@ const About = () => {
   return (
     <motion.section
       id="about"
-      className="min-h-screen flex flex-col justify-center items-center px-6 md:px-20 py-32 bg-black snap-start relative text-white"
+      className="min-h-screen flex flex-col justify-center items-center px-6 md:px-20 py-32 bg-black snap-start relative text-white overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}

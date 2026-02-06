@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
+import Image from 'next/image'
 
 //  Skills data
 const skills = [
@@ -27,7 +28,7 @@ const Skills = () => {
   const { t } = useLanguage()
 
   return (
-    <section id="skills" className="relative py-32 bg-gradient-to-br from-black via-[#0f0f0f] to-black text-white">
+    <section id="skills" className="relative py-32 bg-gradient-to-br from-black via-[#0f0f0f] to-black text-white overflow-hidden">
       <div className="container mx-auto px-6 md:px-20">
         {/* Section Title */}
         <motion.h2
@@ -81,10 +82,12 @@ const SkillCard = ({ skill }) => {
 
       <div className="relative z-10 flex flex-col items-center justify-center">
         <div className="w-20 h-20 mb-4 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full shadow-inner shadow-black/20 group-hover:shadow-cyan-500/20 transition-all duration-300">
-          <img
+          <Image
             src={skill.icon}
             alt={skill.name}
-            className="object-contain w-12 h-12 grayscale group-hover:grayscale-0 transition-all duration-300"
+            width={48}
+            height={48}
+            className="object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
           />
         </div>
         <p className="text-center text-lg font-semibold text-gray-300 group-hover:text-white transition-all duration-300">
