@@ -29,7 +29,7 @@ const authorName = "Mohammed Kamal";
 const siteName = "Mohammed Portfolio";
 const siteDescription = "Welcome to my portfolio! I’m a passionate frontend developer specializing in React, Three.js, and Framer Motion.";
 const siteUrl = "https://mohammed-kamal.netlify.app";
-const siteImage = `${siteUrl}/myimage.webp`;
+const siteImage = `${siteUrl}/myiamge.webp`;
 const primaryColor = "#00ffff";
 const secondaryColor = "#ff00ff";
 
@@ -79,6 +79,16 @@ export const metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+  },
+  verification: {
+    google: "googleda6b566d7c77b39a",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${authorName} Portfolio | Frontend Developer`,
+    description: siteDescription,
+    images: [siteImage],
+    creator: "@mohammed-kamal", // Optional: replace with your actual Twitter handle if you have one
   },
 };
 
